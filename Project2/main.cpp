@@ -230,7 +230,7 @@ void render() {
     // UI 
     const char* modeText = isSinglePlayer ? "Mode: 1-Player (AI) | Press T to switch"
                                           : "Mode: 2-Player | Press T to switch";
-    const char* ballText = TextFormat("Balls: %d | Press 1, 2, or 3", numActiveBalls);
+    const char* ballText = "To change num of Balls | Press 1, 2, or 3";
 
     DrawText(modeText, 10, 10, 20, WHITE);
     DrawText(ballText, 10, 35, 20, WHITE);
