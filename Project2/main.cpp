@@ -202,50 +202,53 @@ void render() {
 
     // Draw background
     DrawTexturePro(backgroundTexture,
-                   {0,0,(float)backgroundTexture.width,(float)backgroundTexture.height},
-                   {SCREEN_WIDTH/2.0f, SCREEN_HEIGHT/2.0f,(float)SCREEN_WIDTH,(float)SCREEN_HEIGHT},
-                   {SCREEN_WIDTH/2.0f, SCREEN_HEIGHT/2.0f}, 0.0f, WHITE);
+                   {0, 0, (float)backgroundTexture.width, (float)backgroundTexture.height},
+                   {SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT},
+                   {SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f}, 0.0f, WHITE);
 
     // Draw paddles
     DrawTexturePro(player1Paddle.texture,
-                   {0,0,(float)player1Paddle.texture.width,(float)player1Paddle.texture.height},
-                   {player1Paddle.position.x,player1Paddle.position.y,player1Paddle.scale.x,player1Paddle.scale.y},
-                   {player1Paddle.scale.x/2, player1Paddle.scale.y/2}, 0.0f, WHITE);
+                   {0, 0, (float)player1Paddle.texture.width, (float)player1Paddle.texture.height},
+                   {player1Paddle.position.x, player1Paddle.position.y, player1Paddle.scale.x, player1Paddle.scale.y},
+                   {player1Paddle.scale.x / 2, player1Paddle.scale.y / 2}, 0.0f, WHITE);
 
     DrawTexturePro(player2Paddle.texture,
-                   {0,0,(float)player2Paddle.texture.width,(float)player2Paddle.texture.height},
-                   {player2Paddle.position.x,player2Paddle.position.y,player2Paddle.scale.x,player2Paddle.scale.y},
-                   {player2Paddle.scale.x/2, player2Paddle.scale.y/2}, 0.0f, WHITE);
+                   {0, 0, (float)player2Paddle.texture.width, (float)player2Paddle.texture.height},
+                   {player2Paddle.position.x, player2Paddle.position.y, player2Paddle.scale.x, player2Paddle.scale.y},
+                   {player2Paddle.scale.x / 2, player2Paddle.scale.y / 2}, 0.0f, WHITE);
 
     // Draw balls
-    for (int i=0;i<MAX_BALLS;++i) if (balls[i].isActive) {
-        DrawTexturePro(balls[i].texture,
-                       {0,0,(float)balls[i].texture.width,(float)balls[i].texture.height},
-                       {balls[i].position.x,balls[i].position.y,balls[i].scale.x,balls[i].scale.y},
-                       {balls[i].scale.x/2, balls[i].scale.y/2}, 0.0f, WHITE);
+    for (int i = 0; i < MAX_BALLS; ++i) {
+        if (balls[i].isActive) {
+            DrawTexturePro(balls[i].texture,
+                           {0, 0, (float)balls[i].texture.width, (float)balls[i].texture.height},
+                           {balls[i].position.x, balls[i].position.y, balls[i].scale.x, balls[i].scale.y},
+                           {balls[i].scale.x / 2, balls[i].scale.y / 2}, 0.0f, WHITE);
+        }
     }
 
-    //UI
-    string modeText = isSinglePlayer ? "Mode: 1-Player (AI) | Press T to switch" : "Mode: 2-Player | Press T to switch";
-    string ballText = "Balls: " + to_string(numActiveBalls) + " | Press 1, 2, or 3";
-    DrawText(modeText.c_str(), 10, 10, 20, WHITE);
-    DrawText(ballText.c_str(), 10, 35, 20, WHITE);
+    // UI 
+    const char* modeText = isSinglePlayer ? "Mode: 1-Player (AI) | Press T to switch"
+                                          : "Mode: 2-Player | Press T to switch";
+    const char* ballText = TextFormat("Balls: %d | Press 1, 2, or 3", numActiveBalls);
+
+    DrawText(modeText, 10, 10, 20, WHITE);
+    DrawText(ballText, 10, 35, 20, WHITE);
     DrawText("Player 1: W/S", 10, SCREEN_HEIGHT - 30, 20, WHITE);
     DrawText("Player 2: UP/DOWN", SCREEN_WIDTH - 200, SCREEN_HEIGHT - 30, 20, WHITE);
 
-    //Game Over screen
+    //Game Over 
     if (currentGameState != RUNNING) {
-        string gameOverText = currentGameState == GAME_OVER_P1_WIN ? "PLAYER 1 WINS!" : "PLAYER 2 WINS!";
-        int textWidth = MeasureText(gameOverText.c_str(), FONT_SIZE);
-        DrawText(gameOverText.c_str(), (SCREEN_WIDTH/2) - textWidth/2, SCREEN_HEIGHT/2 - FONT_SIZE, FONT_SIZE, WHITE);
-
-        string resetText = "Press R to Reset";
-        int resetWidth = MeasureText(resetText.c_str(), 30);
-        DrawText(resetText.c_str(), (SCREEN_WIDTH/2) - resetWidth/2, SCREEN_HEIGHT/2 + 10, 30, WHITE);
+        const char* gameOverText = (currentGameState == GAME_OVER_P1_WIN)
+                                   ? "PLAYER 1 WINS!"
+                                   : "PLAYER 2 WINS!";
+        DrawText(gameOverText, SCREEN_WIDTH / 2 - 150, SCREEN_HEIGHT / 2 - 60, FONT_SIZE, WHITE);
+        DrawText("Press R to Reset", SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 + 10, 30, WHITE);
     }
 
     EndDrawing();
 }
+
 
 //shutdown
 void shutdown() {
