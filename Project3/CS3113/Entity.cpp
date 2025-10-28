@@ -192,7 +192,7 @@ void Entity::update(float deltaTime, Entity *collidableEntities,
     if(mEntityStatus == INACTIVE) return;
 
     resetColliderFlags();
-    mVelocity.x *= 0.95f;
+    mVelocity.x *= 0.98f;
     
 
     mVelocity.x += mAcceleration.x * deltaTime;
