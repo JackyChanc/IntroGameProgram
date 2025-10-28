@@ -157,6 +157,18 @@ void update()
         
         return; 
     }
+    Vector2 rocketPos = gRocket->getPosition();
+    Vector2 rocketScale = gRocket->getScale();
+
+    float leftBound = 0;
+    float rightBound = SCREEN_WIDTH;
+    float topBound = 0;
+    float bottomBound = SCREEN_HEIGHT;
+    if (rocketPos.x < leftBound || rocketPos.x > rightBound || 
+    rocketPos.y < topBound || rocketPos.y > bottomBound) {
+    gMissionFailed = true; //mission failllllll, keep rocket on screen
+}
+
 
     deltaTime += gTimeAccumulator; //delta time plus leftover time
 
