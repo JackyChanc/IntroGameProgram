@@ -1,12 +1,12 @@
 #ifndef LEVELC_H
 #define LEVELC_H
 
-#include "LevelA.h"  // This gives you LEVEL_WIDTH and LEVEL_HEIGHT
+#include "LevelA.h"  // For LEVEL_WIDTH and LEVEL_HEIGHT
 #include <vector>
 
 class LevelC : public Scene {
 private:
-    // --- Tilemap data for Level C ---
+    // Level layout 
     unsigned int mLevelData[LEVEL_WIDTH * LEVEL_HEIGHT] = {
         1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,

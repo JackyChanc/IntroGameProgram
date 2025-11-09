@@ -6,7 +6,7 @@
 
 class LevelB : public Scene {
 private:
-
+    // Level layout
     unsigned int mLevelData[LEVEL_WIDTH * LEVEL_HEIGHT] = {
         1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
         1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,

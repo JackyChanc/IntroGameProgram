@@ -212,7 +212,7 @@ void LevelA::shutdown()
         mChest = nullptr;
     }
 
-    // YEET audio out of RAM properly
+    // Unload audio out of RAM properly
     UnloadMusicStream(mGameState.bgm);
     UnloadSound(mGameState.jumpSound);
     UnloadSound(mDeathSound);
