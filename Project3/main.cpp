@@ -75,7 +75,7 @@ void initialise()
         "assets/game/rocket.png",        // texture file address
         ATLAS,                         // atlas type
         { 2, 4 },                      // atlas dimensions
-        animationAtlas,                // actual atlas
+        animationAtlas,
         PLAYER                         // entity type
     );
 
@@ -300,20 +300,29 @@ int main(void)
 {
     initialise();
 
+    float previousTicks = 0.0f; 
+
     while (gAppStatus == RUNNING)
     {
+        
+        float ticks = (float)GetTime();
+        float deltaTime = ticks - previousTicks;
+        previousTicks = ticks;
+
+        
         processInput();
         update();
         render();
+
+        
         if (gMissionComplete || gMissionFailed)
         {
-            endTimer += GetFrameTime();
-            if (endTimer >= 10.0f) // wait 10 seconds
+            endTimer += deltaTime;        
+            if (endTimer >= 10.0f)        // wait 10 seconds before closing
                 gAppStatus = TERMINATED;
         }
     }
 
     shutdown();
-
     return 0;
 }
